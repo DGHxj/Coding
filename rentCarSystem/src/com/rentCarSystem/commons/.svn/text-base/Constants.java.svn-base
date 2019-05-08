@@ -1,0 +1,16 @@
+package com.rentCarSystem.commons;
+
+public abstract class Constants {
+	public static final String DB_DRIVER="oracle.jdbc.driver.OracleDriver";
+	public static final String DB_URL="jdbc:oracle:thin:@192.168.1.38:1521:orcl";
+	public static final String DB_USER_NAME="snn";
+	public static final String DB_USER_PWD="admin";
+	public static final String SESSION_KEY="user";
+	public static final String MESSAGE_KEY="msg";
+	public final static String VALIDATE_CODE_KEY = "code";
+	public final static int PAGE_NUMBER=5;
+	public final static String LOG_ACTION_RENTCARTABLE = "生成出租单";
+	public final static String LOG_ACTION_CHECKTABLE = "生成检查单";
+	public final static int LOG_ACTION_RENDCARTABLE_STATE = 1;
+	public final static int LOG_ACTION_CHECKTABLE_STATE = 2;
+}

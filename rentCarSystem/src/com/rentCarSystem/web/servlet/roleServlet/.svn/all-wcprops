@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rep1/!svn/ver/339/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet
+END
+AddRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/rep1/!svn/ver/298/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/AddRoleServlet.java
+END
+FindAllRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/rep1/!svn/ver/339/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/FindAllRoleServlet.java
+END
+PreAddRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rep1/!svn/ver/265/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/PreAddRoleServlet.java
+END
+FindRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/rep1/!svn/ver/265/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/FindRoleServlet.java
+END
+DeleteRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rep1/!svn/ver/265/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/DeleteRoleServlet.java
+END
+UpdateRoleServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rep1/!svn/ver/300/rentCarSystem/src/com/rentCarSystem/web/servlet/roleServlet/UpdateRoleServlet.java
+END

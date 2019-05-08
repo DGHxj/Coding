@@ -1,0 +1,329 @@
+package com.rentCarSystem.persist;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+
+import com.rentCarSystem.commons.Constants;
+import com.rentCarSystem.commons.JdbcUtil;
+import com.rentCarSystem.commons.Page;
+import com.rentCarSystem.domain.Car;
+import com.rentCarSystem.exception.SystemError;
+import com.rentCarSystem.exception.SystemException;
+import com.rentCarSystem.exception.UserNotFoundException;
+
+public class CarDaoImpl implements CarDao {
+	/**
+	 * 单例模式
+	 */
+	private static CarDao carDao=new CarDaoImpl();
+	private CarDaoImpl(){
+		
+	}
+	public static CarDao getInstance(){
+		return carDao;
+	}
+	/**
+	 * 添加汽车方法
+	 * @param car
+	 */
+	public void addCar(Car car) {
+		String sql="insert into cars(carnumber,cartype,color,price,rentprice,deposit,isrenting,cardesc) values(?,?,?,?,?,?,?,?)";
+		Connection conn=null;
+		try{
+			conn=JdbcUtil.getConnection();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			Car c=this.findCar(car.getCarNumber());
+			if(c==null){
+				ps.setString(1, car.getCarNumber());
+				ps.setString(2, car.getCarType());
+				ps.setString(3,car.getColor());
+				if(car.getPrice()!=null&&car.getPrice().length()>0){
+					ps.setDouble(4, Double.parseDouble(car.getPrice()));
+				}else{
+					ps.setDouble(4, 0);
+				}
+				if(car.getRentPrice()!=null&&car.getRentPrice().length()>0){
+					ps.setDouble(5, Double.parseDouble(car.getRentPrice()));
+				}else{
+					ps.setDouble(5, 0);
+				}
+				if(car.getDeposit()!=null&&car.getDeposit().length()>0){
+					ps.setDouble(6, Double.parseDouble(car.getDeposit()));
+				}else{
+					ps.setDouble(6, 0);
+				}
+				ps.setString(7, car.getIsRenting());
+				ps.setString(8, car.getDescription());
+				ps.executeUpdate();
+			}else{
+				throw new SystemException("该汽车已存在");
+			}
+		}catch(SQLException e){
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			if(e.toString().indexOf("SystemException")!=-1){
+				throw new SystemException(e.getMessage());
+			}else{
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+
+	}
+	/**
+	 * 分页查询汽车信息
+	 * @param car
+	 * @return Page
+	 */
+	public Page findAllCar(Car car,int pageIndex) {
+		Connection conn=null;
+		Page p=new Page();
+		try {
+			conn=JdbcUtil.getConnection();
+			int from=(pageIndex-1)*Constants.PAGE_NUMBER+1;
+			int to=pageIndex*Constants.PAGE_NUMBER;
+			String sql=genSQL(car, from, to);
+			String countSQL=countSQl(car);
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				Car c=new Car();
+				DecimalFormat df=new DecimalFormat("$###,###.##");
+				c.setCarNumber(rs.getString("carnumber"));
+				c.setCarType(rs.getString("cartype"));
+				c.setColor(rs.getString("color"));
+				c.setDeposit(df.format(rs.getDouble("deposit")));
+				c.setDescription(rs.getString("cardesc"));
+				c.setIsRenting(rs.getString("isrenting"));
+				c.setPrice(df.format(rs.getDouble("price")));
+				c.setRentPrice(df.format(rs.getDouble("rentprice")));
+				p.getResult().add(c);
+			}
+			if(p.getResult().size() > 0){
+				PreparedStatement ps2 = conn.prepareStatement(countSQL);
+				ResultSet rs2 = ps2.executeQuery();
+				int countTemp = -1;
+				while(rs2.next()){
+					countTemp = rs2.getInt("count");
+				}
+				if(countTemp != -1){
+					int totalPage = 0;
+					if(countTemp % Constants.PAGE_NUMBER == 0){
+						totalPage = countTemp/Constants.PAGE_NUMBER;
+					}else{
+						totalPage = countTemp/Constants.PAGE_NUMBER+1;
+					}
+					p.setCountRow(countTemp);
+					p.setCurrPage(pageIndex);
+					p.setTotalPage(totalPage);
+				}
+			}
+		}catch(SQLException e){
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			throw new SystemError("数据库访问失败");
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+		return p;
+	}
+	/**
+	 * 删除汽车信息
+	 * @param carNumber
+	 */
+	public void deleteCar(String carNumber) {
+		String sql="delete from cars c where c.carnumber=?";
+		Connection conn=null;
+		try{
+			conn=JdbcUtil.getConnection();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, carNumber);
+			ps.executeUpdate();
+		}catch(SQLException e){
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			throw new SystemError("数据库访问失败");
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+	}
+	/**
+	 * 查询单个汽车信息方法
+	 * @param carNumber
+	 */
+	public Car findCar(String carNumber) {
+		String sql="select * from cars c where c.carnumber=?";
+		Car car=null;
+		Connection conn=null;
+		try{
+			conn=JdbcUtil.getConnection();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, carNumber);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				DecimalFormat df=new DecimalFormat("######.##");
+				car=new Car();
+				car.setCarNumber(rs.getString("carnumber"));
+				car.setCarType(rs.getString("cartype"));
+				car.setColor(rs.getString("color"));
+				car.setDeposit(df.format(rs.getDouble("deposit"))+".0");
+				car.setDescription(rs.getString("cardesc"));
+				car.setIsRenting(rs.getString("isrenting"));
+				car.setPrice(df.format(rs.getDouble("price"))+".0");
+				car.setRentPrice(df.format(rs.getDouble("rentprice"))+".0");
+			}
+		}catch(SQLException e){
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			throw new SystemError("数据库访问失败");
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+		return car;
+	}
+	/**
+	 * 更新汽车方法
+	 * @param car
+	 */
+	public void updateCar(Car car) {
+		Connection conn=null;
+		String sql="update cars c set cartype=?,color=?,price=?,rentprice=?,deposit=?,isrenting=?,cardesc=?" +
+				" where carnumber=?";
+		try{
+			conn=JdbcUtil.getConnection();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, car.getCarType());
+			ps.setString(2, car.getColor());
+			ps.setDouble(3, Double.parseDouble(car.getPrice()));
+			ps.setDouble(4, Double.parseDouble(car.getRentPrice()));
+			ps.setDouble(5, Double.parseDouble(car.getDeposit()));
+			ps.setString(6, car.getIsRenting());
+			ps.setString(7, car.getDescription());
+			ps.setString(8, car.getCarNumber());
+			ps.executeUpdate();
+		}catch(SQLException e){
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemError("数据库访问失败");
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+		
+	}
+	// 拼接查询的sql语句
+	private String genanSQl(Car car) {
+		StringBuffer sb = new StringBuffer(
+				"select rownum rn,carnumber,cartype,color,price,rentprice,deposit,isrenting,cardesc from  cars c where 1=1 ");
+		if(car.getCarNumber()!=null && car.getCarNumber().length()>0){
+			sb.append(" and c.carnumber like '%").append(car.getCarNumber())
+			.append("%'");
+		}
+		if(car.getCarType()!=null && car.getCarType().length()>0){
+			sb.append(" and c.cartype like '%").append(car.getCarType())
+			.append("%'");
+		}
+		if(car.getColor()!=null && car.getColor().length()>0){
+			sb.append(" and c.color like '%").append(car.getColor())
+			.append("%'");
+		}
+		if(car.getPrice()!=null && car.getPrice().length()>0){
+			sb.append(" and c.price like '%").append(car.getPrice())
+			.append("%'");
+		}
+		if(car.getRentPrice()!=null && car.getRentPrice().length()>0){
+			sb.append(" and c.rentprice like '%").append(car.getRentPrice())
+			.append("%'");
+		}
+		if(car.getDeposit()!=null && car.getDeposit().length()>0){
+			sb.append(" and c.deposit like '%").append(car.getDeposit())
+			.append("%'");
+		}
+		if(car.getIsRenting()!=null && car.getIsRenting().length()>0){
+			sb.append(" and c.isrenting ='").append(car.getIsRenting()).append("'");
+		}
+		if(car.getDescription()!=null && car.getDescription().length()>0){
+			sb.append(" and c.cardesc like '%").append(car.getDescription())
+			.append("%'");
+		}
+		return sb.toString();
+	}
+	// 拼接查询码内建视图的sql语句
+	private String genSQL(Car car, int from, int to) {
+		StringBuffer sb = new StringBuffer("select t.* from (");
+		sb.append(this.genanSQl(car)).append(")t where t.rn between ").append(
+				from).append(" and ").append(to);
+		return sb.toString();
+	}
+	//拼接查询总条数的sql语句
+	private String countSQl(Car car) {
+		StringBuffer sb = new StringBuffer(
+				"select count(*) count from  cars c where 1=1 ");
+		if(car.getCarNumber()!=null && car.getCarNumber().length()>0){
+			sb.append(" and c.carnumber like '%").append(car.getCarNumber())
+			.append("%'");
+		}
+		if(car.getCarType()!=null && car.getCarType().length()>0){
+			sb.append(" and c.cartype like '%").append(car.getCarType())
+			.append("%'");
+		}
+		if(car.getColor()!=null && car.getColor().length()>0){
+			sb.append(" and c.color like '%").append(car.getColor())
+			.append("%'");
+		}
+		if(car.getPrice()!=null && car.getPrice().length()>0){
+			sb.append(" and c.price like '%").append(car.getPrice())
+			.append("%'");
+		}
+		if(car.getRentPrice()!=null && car.getRentPrice().length()>0){
+			sb.append(" and c.rentprice like '%").append(car.getRentPrice())
+			.append("%'");
+		}
+		if(car.getDeposit()!=null && car.getDeposit().length()>0){
+			sb.append(" and c.deposit like '%").append(car.getDeposit())
+			.append("%'");
+		}
+		if(car.getIsRenting()!=null && car.getIsRenting().length()>0){
+			sb.append(" and c.isrenting like '%").append(car.getIsRenting())
+			.append("%'");
+		}
+		if(car.getDescription()!=null && car.getDescription().length()>0){
+			sb.append(" and c.cardesc like '%").append(car.getDescription())
+			.append("%'");
+		}
+		return sb.toString();
+	}
+	
+	//根据出租状态查询单个汽车信息方法
+	public Page findCarByIsrenting(String isrenting) {
+		String sql="select * from cars c where c.isrenting=?";
+		Page p=new Page();
+		Connection conn=null;
+		try{
+			conn=JdbcUtil.getConnection();
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, isrenting);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				Car car=new Car();
+				car.setCarNumber(rs.getString("carnumber"));
+				p.getResult().add(car);
+			}
+		}catch(SQLException e){
+			throw new SystemException("sql语句出错");
+		}catch(Exception e){
+			throw new SystemError("数据库访问失败");
+		}finally{
+			JdbcUtil.closeConnection(conn);
+		}
+		return p;
+		
+	}
+}

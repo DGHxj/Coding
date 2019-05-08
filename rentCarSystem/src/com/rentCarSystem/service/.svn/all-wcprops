@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rep1/!svn/ver/380/rentCarSystem/src/com/rentCarSystem/service
+END
+LogsManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/221/rentCarSystem/src/com/rentCarSystem/service/LogsManager.java
+END
+CarManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rep1/!svn/ver/172/rentCarSystem/src/com/rentCarSystem/service/CarManager.java
+END
+CustomersManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/rep1/!svn/ver/206/rentCarSystem/src/com/rentCarSystem/service/CustomersManagerImpl.java
+END
+LoginUserManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/rep1/!svn/ver/2/rentCarSystem/src/com/rentCarSystem/service/LoginUserManager.java
+END
+CheckTableManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/rep1/!svn/ver/366/rentCarSystem/src/com/rentCarSystem/service/CheckTableManagerImpl.java
+END
+UserManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rep1/!svn/ver/40/rentCarSystem/src/com/rentCarSystem/service/UserManager.java
+END
+RentTableManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/rep1/!svn/ver/247/rentCarSystem/src/com/rentCarSystem/service/RentTableManager.java
+END
+RoleManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rep1/!svn/ver/302/rentCarSystem/src/com/rentCarSystem/service/RoleManagerImpl.java
+END
+CustomersManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rep1/!svn/ver/56/rentCarSystem/src/com/rentCarSystem/service/CustomersManager.java
+END
+CheckTableManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/rep1/!svn/ver/312/rentCarSystem/src/com/rentCarSystem/service/CheckTableManager.java
+END
+LogsManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rep1/!svn/ver/221/rentCarSystem/src/com/rentCarSystem/service/LogsManagerImpl.java
+END
+CarManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/rep1/!svn/ver/172/rentCarSystem/src/com/rentCarSystem/service/CarManagerImpl.java
+END
+LoginUserManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/rep1/!svn/ver/2/rentCarSystem/src/com/rentCarSystem/service/LoginUserManagerImpl.java
+END
+UserManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rep1/!svn/ver/213/rentCarSystem/src/com/rentCarSystem/service/UserManagerImpl.java
+END
+RoleManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/301/rentCarSystem/src/com/rentCarSystem/service/RoleManager.java
+END
+RentTableManagerImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/rep1/!svn/ver/380/rentCarSystem/src/com/rentCarSystem/service/RentTableManagerImpl.java
+END

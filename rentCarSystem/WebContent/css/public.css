@@ -1,0 +1,136 @@
+a:link {
+	text-decoration: none;
+	color: #000000;
+}
+a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+a:hover {
+	text-decoration: none;
+	color: #000000;
+}
+a:active {
+	text-decoration: none;
+	color: #000000;
+}
+
+body {
+    background-color : #EDF3FF;
+    font-family : arial,����,verdana,helvetica;
+    font-size:10pt; 
+    line-height:130%;
+    margin:0px;
+    scrollbar-face-color:#62D8FF;
+    scrollbar-highlight-color:#FFFFFF;
+    scrollbar-3dlight-color:#00FFFF;
+    scrollbar-darkshadow-color:#00FFFF;
+    scrollbar-Shadow-color:#FFFFFF;
+    scrollbar-arrow-color:#FFFFFF;
+    scrollbar-track-color:#95E8EC;
+	background-attachment : fixed ;
+}
+.bodylogin {
+	background-color: #0FA0CD;
+}
+/*
+�������ָ��
+*/
+.pointer {
+cursor:pointer
+}
+.Off{
+padding:100px;
+}
+.up{
+background-color: #94DCEB; padding:100px
+}
+/*
+�����ʽ����
+*/
+td{
+font-size:12px;
+border-color:#CCCCCC;
+
+}
+tr{
+border-color:#CCCCCC;
+}
+th{
+font-size:12px;
+background-color:#94DCEB;
+border-color:#000000;
+height:24px;
+}
+.maintable{
+background-color:#EDF3FF;
+}
+.tablecontent{
+background-color:#EDF3FF;
+border:1px solid #000000;
+border-collapse: collapse;
+border-style: solid;
+border-width: 1px;
+
+}
+.tablelistcontent{
+background-color:#FFFFFF;
+border:1px solid #000000;
+border-collapse: collapse;
+border-style: solid; 
+border-width: 1px
+}
+div.topBar{
+    width:100%;
+    height:23px;
+    background: url(../images/topBarBg.gif) repeat-x
+}
+table.footerBg{
+    background-image : url(../images/footerBg.gif);
+    width:100%;
+    height:23px
+}
+td.footerMsg{
+    text-align:center;
+    font-size:9pt;
+    color:#004E73
+}
+td.hdMsg {font-size:9pt;
+    color:#ffffff
+}
+.dictionary{
+border-color:#CCCCCC;
+background-color:#FFCC00;
+}
+/*
+�Ǻ���ɫ
+*/
+.star {
+color: #FF0000
+}
+/*
+����
+*/
+.font {
+color: #FFFFFF;
+}
+.searchfontlist{
+font-size:13px;
+font-weight: bold;
+}
+/*
+�?��ʽ
+*/
+.inputsearch{
+height:20px;
+border:1px solid #CCCCCC
+}
+.inputcontent{
+	border:1px solid #CCCCCC;
+	width: 150px;
+}
+.inputlogin
+{
+height:18px;
+border:1px solid #CCCCCC
+}

@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- 配置字符集 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>
+			com.rentCarSystem.web.filter.EncodingFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置用户登录servlet -->
+	<servlet>
+		<servlet-name>LoginUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.LoginUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginUserServlet</servlet-name>
+		<url-pattern>/loginUser.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置用户登录filter -->
+	<filter>
+		<filter-name>LoginUserFilter</filter-name>
+		<filter-class>
+			com.rentCarSystem.web.filter.LoginUserFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginUserFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- -->
+	<filter>
+		<filter-name>SafeFilter</filter-name>
+		<filter-class>
+			com.rentCarSystem.web.filter.SafeFilter
+		</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SafeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置验证码Servlet -->
+	<servlet>
+		<servlet-name>ValidateCodeServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.commons.ValidateCodeServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ValidateCodeServlet</servlet-name>
+		<url-pattern>/ValidateCodeServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置安全退出servlet -->
+	<servlet>
+		<servlet-name>ExitUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.ExitUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ExitUserServlet</servlet-name>
+		<url-pattern>/ExitUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 用户00000000000000000000000000000000000000000 -->
+	<!-- 配置添加用户信息servlet -->
+	<servlet>
+		<servlet-name>PreAddUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.PreAddUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreAddUserServlet</servlet-name>
+		<url-pattern>/PreAddUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 预查询用户信息servlet -->
+	<servlet>
+		<servlet-name>PreFindUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.PreFindUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreFindUserServlet</servlet-name>
+		<url-pattern>/PreFindUser.do</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 配置查询用户信息servlet -->
+	<servlet>
+		<servlet-name>FindUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.FindUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindUserServlet</servlet-name>
+		<url-pattern>/FindUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置添加用户信息servlet -->
+	<servlet>
+		<servlet-name>AddUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.AddUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddUserServlet</servlet-name>
+		<url-pattern>/AddUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除用户信息servlet -->
+	<servlet>
+		<servlet-name>DeleteUserServelt</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.DeleteUserServelt
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteUserServelt</servlet-name>
+		<url-pattern>/DeleteUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除多个用户的servlet -->
+	<servlet>
+		<servlet-name>DeleteAllUserServelt</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.DeleteAllUserServelt
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAllUserServelt</servlet-name>
+		<url-pattern>/DeleteAll.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置预更新用户信息servlet -->
+	<servlet>
+		<servlet-name>PreUpdateUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.PreUpdateUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreUpdateUserServlet</servlet-name>
+		<url-pattern>/PreUpdateUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置更新用户信息servlet -->
+	<servlet>
+		<servlet-name>UpdateUserServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.UpdateUserServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateUserServlet</servlet-name>
+		<url-pattern>/UpdateUser.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置预修改密码servlet -->
+	<servlet>
+		<servlet-name>PreChangeUserPwdServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.PreChangeUserPwdServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreChangeUserPwdServlet</servlet-name>
+		<url-pattern>/PreChangeUserPwd.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置真正修改密码servelt -->
+	<servlet>
+		<servlet-name>ChangeUserPwdServelt</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.userServlet.ChangeUserPwdServelt
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChangeUserPwdServelt</servlet-name>
+		<url-pattern>/ChangeUserPwd.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 客户00000000000000000000000000000000000000000 -->
+	<!-- 配置添加客户Servlet -->
+	<servlet>
+		<servlet-name>AddCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.AddCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCustomersServlet</servlet-name>
+		<url-pattern>/addCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置查询所有客户Servlet -->
+	<servlet>
+		<servlet-name>FindAllCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.FindAllCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindAllCustomersServlet</servlet-name>
+		<url-pattern>/findAllCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置删除客户Servlet -->
+	<servlet>
+		<servlet-name>DeleteCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.DeleteCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCustomersServlet</servlet-name>
+		<url-pattern>/deleteCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置查询客户单个Servlet -->
+	<servlet>
+		<servlet-name>FindCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.FindCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindCustomersServlet</servlet-name>
+		<url-pattern>/findCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 修改客户信息Servlet -->
+	<servlet>
+		<servlet-name>UpdateCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.UpdateCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateCustomersServlet</servlet-name>
+		<url-pattern>/updateCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 修改客户密码servlet -->
+	<servlet>
+		<servlet-name>ChengeCustomersPwdServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.ChengeCustomersPwdServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ChengeCustomersPwdServlet</servlet-name>
+		<url-pattern>/chengeCustomersPwdServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置预修改密码servlet -->
+	<servlet>
+		<servlet-name>PreChangeCustomerPwdServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.PreChangeCustomerPwdServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreChangeCustomerPwdServlet</servlet-name>
+		<url-pattern>/preChangeCustomerPwd.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除多个客户servlet -->
+	<servlet>
+		<servlet-name>DeleteAllCustomersServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.customersServlet.DeleteAllCustomersServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAllCustomersServlet</servlet-name>
+		<url-pattern>/deleteAllCustomersServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 汽车0000000000000000000000000000000000000000000000000000000 -->
+	<!-- 配置添加汽车servlet -->
+	<servlet>
+		<servlet-name>AddCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.AddCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddCarServlet</servlet-name>
+		<url-pattern>/addCar.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置查询汽车servlet -->
+	<servlet>
+		<servlet-name>FindAllLLCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.FindAllCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindAllLLCarServlet</servlet-name>
+		<url-pattern>/findAllCar.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除汽车servlet -->
+	<servlet>
+		<servlet-name>DeleteCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.DeleteCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteCarServlet</servlet-name>
+		<url-pattern>/deleteCar.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置查询单个汽车servlet -->
+	<servlet>
+		<servlet-name>FindCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.FindCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindCarServlet</servlet-name>
+		<url-pattern>/findCar.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置更新汽车servlet -->
+	<servlet>
+		<servlet-name>UpdateCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.UpdateCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateCarServlet</servlet-name>
+		<url-pattern>/UpdateCar.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除多个汽车servlet -->
+	<servlet>
+		<servlet-name>DeleteAllCarServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.carServlet.DeleteAllCarServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAllCarServlet</servlet-name>
+		<url-pattern>/DeleteAllCarServlet.do</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 业务统计00000000000000000000000000000000000000000000000000 -->
+	<!-- 查询当月应还车辆 -->
+	<servlet>
+		<servlet-name>MonthReturnCarServelt</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorCount.MonthReturnCarServelt
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MonthReturnCarServelt</servlet-name>
+		<url-pattern>/MonthReturnCar.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 查询当月应归还汽车详细信息 -->
+	<servlet>
+		<servlet-name>FindMonthReturnCarByInfoServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorCount.FindMonthReturnCarByInfoServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindMonthReturnCarByInfoServlet</servlet-name>
+		<url-pattern>/FindMonthReturnCarByInfo.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 业务管理00000000000000000000000000000000000000000000000000 -->
+	<!-- 配置预添加租车单Servlet -->
+	<servlet>
+		<servlet-name>PreCreateRentCarTableServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.PreCreateRentCarTableServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreCreateRentCarTableServlet</servlet-name>
+		<url-pattern>/preCreateRentCarTableServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置添加租车单Servlet -->
+	<servlet>
+		<servlet-name>CreateRentCarTableServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.CreateRentCarTableServlet
+		</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FindLogsServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.logsServlet.FindLogsServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CreateRentCarTableServlet</servlet-name>
+		<url-pattern>/createRentCarTableServlet.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FindLogsServlet</servlet-name>
+		<url-pattern>/findLogsServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 角色00000000000000000000000000000000000000000 -->
+	<!-- 配置查询所有角色Servlet -->
+	<servlet>
+		<servlet-name>FindAllRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.FindAllRoleServlet
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FindAllRoleServlet</servlet-name>
+		<url-pattern>/findAllRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除角色Servlet -->
+	<servlet>
+		<servlet-name>DeleteRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.DeleteRoleServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteRoleServlet</servlet-name>
+		<url-pattern>/deleteRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置更改角色Servlet -->
+	<servlet>
+		<servlet-name>UpdateRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.UpdateRoleServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateRoleServlet</servlet-name>
+		<url-pattern>/updateRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置查询单个角色Servlet -->
+	<servlet>
+		<servlet-name>FindRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.FindRoleServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindRoleServlet</servlet-name>
+		<url-pattern>/findRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置预添加角色Servlet -->
+	<servlet>
+		<servlet-name>PreAddRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.PreAddRoleServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreAddRoleServlet</servlet-name>
+		<url-pattern>/PreAddRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置添加角色Servlet -->
+	<servlet>
+		<servlet-name>AddRoleServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.roleServlet.AddRoleServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddRoleServlet</servlet-name>
+		<url-pattern>/addRole.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除单个日志Servlet -->
+	<servlet>
+		<servlet-name>DeleteLogsServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.logsServlet.DeleteLogsServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteLogsServlet</servlet-name>
+		<url-pattern>/deleteLogsServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除单个日志Servlet -->
+	<servlet>
+		<servlet-name>DeleteAllLogs</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.logsServlet.DeleteAllLogs
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAllLogs</servlet-name>
+		<url-pattern>/deleteAllLogs.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置出租单管理中查询所有出租单Servlet -->
+	<servlet>
+		<servlet-name>FindAllRentCarTable</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.FindAllRentCarTable
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindAllRentCarTable</servlet-name>
+		<url-pattern>/findAllRentCarTable.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置更新租单Servlet -->
+	<servlet>
+		<servlet-name>UpdeateRentTable</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.UpdeateRentTable
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdeateRentTable</servlet-name>
+		<url-pattern>/updeateRentTable.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置出租单管理中查询单个出租单Servlet -->
+	<servlet>
+		<servlet-name>FindRentCarTableById</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.FindRentCarTableById
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindRentCarTableById</servlet-name>
+		<url-pattern>/findRentCarTableById.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置预查询还车信息Servlet -->
+	<servlet>
+		<servlet-name>PreReturnCarSearchServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.PreReturnCarSearchServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PreReturnCarSearchServlet</servlet-name>
+		<url-pattern>/PreReturnCarSearch.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置创建检查单Servlet -->
+	<servlet>
+		<servlet-name>CreateCheckTableServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.CreateCheckTableServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateCheckTableServlet</servlet-name>
+		<url-pattern>/CreateCheckTable.do</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 配置查询所有检查单Servlet -->
+	<servlet>
+		<servlet-name>FindAllCheckTable</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.FindAllCheckTable
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FindAllCheckTable</servlet-name>
+		<url-pattern>/findAllCheckTable.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置删除所有出租单Servlet -->
+	<servlet>
+		<servlet-name>DeleteAllRentTableServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.DeleteAllRentTableServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteAllRentTableServlet</servlet-name>
+		<url-pattern>/deleteAllRentTableServlet.do</url-pattern>
+	</servlet-mapping>
+	<!-- 配置删除单个出租单Servlet -->
+	<servlet>
+		<servlet-name>DeleteRentTableServlet</servlet-name>
+		<servlet-class>
+			com.rentCarSystem.web.servlet.operatorManagerServlet.DeleteRentTableServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteRentTableServlet</servlet-name>
+		<url-pattern>/deleteRentTableServlet.do</url-pattern>
+	</servlet-mapping>
+ 
+<!-- 配置删除单个检查单Servlet -->
+	<servlet>
+    <servlet-name>DeleteCheckTableServlet</servlet-name>
+    <servlet-class>com.rentCarSystem.web.servlet.operatorManagerServlet.DeleteCheckTableServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    <servlet-name>DeleteCheckTableServlet</servlet-name>
+    <url-pattern>/deleteCheckTableServlet.do</url-pattern>
+  </servlet-mapping>
+  
+<!-- 配置删除所有检查单Servlet -->
+  <servlet>
+    <servlet-name>DeleteAllCheckTableServlet</servlet-name>
+    <servlet-class>com.rentCarSystem.web.servlet.operatorManagerServlet.DeleteAllCheckTableServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAllCheckTableServlet</servlet-name>
+    <url-pattern>/deleteAllCheckTableServlet.do</url-pattern>
+  </servlet-mapping>
+  <!-- 配置查詢單個检查单Servlet -->
+  <servlet>
+    <servlet-name>FindCheckTableById</servlet-name>
+    <servlet-class>com.rentCarSystem.web.servlet.operatorManagerServlet.FindCheckTableById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindCheckTableById</servlet-name>
+    <url-pattern>/findCheckTableById.do</url-pattern>
+  </servlet-mapping>
+   <!-- 配置更新检查单Servlet -->
+  <servlet>
+    <servlet-name>UpdateCheckTable</servlet-name>
+    <servlet-class>com.rentCarSystem.web.servlet.operatorManagerServlet.UpdateCheckTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateCheckTable</servlet-name>
+    <url-pattern>/updateCheckTable.do</url-pattern>
+  </servlet-mapping>
+ 
+
+
+
+
+
+
+
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

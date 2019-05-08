@@ -1,0 +1,393 @@
+package com.rentCarSystem.persist;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.rentCarSystem.commons.Constants;
+import com.rentCarSystem.commons.JdbcUtil;
+import com.rentCarSystem.commons.Page;
+import com.rentCarSystem.commons.Tools;
+import com.rentCarSystem.domain.Car;
+import com.rentCarSystem.domain.CheckTable;
+import com.rentCarSystem.domain.Customers;
+import com.rentCarSystem.domain.RentTable;
+import com.rentCarSystem.domain.User;
+import com.rentCarSystem.exception.SystemError;
+import com.rentCarSystem.exception.SystemException;
+
+public class CheckTableDaoImpl implements CheckTableDao {
+	/**
+	 * 单例模式
+	 */
+	private static CheckTableDao checkTableDao = new CheckTableDaoImpl();
+
+	private CheckTableDaoImpl() {
+
+	}
+
+	public static CheckTableDao getInstance() {
+		return checkTableDao;
+	}
+
+	/**
+	 * 根据出租单id查出出租单信息
+	 * 
+	 * @param rentId
+	 * @return
+	 */
+	public RentTable findRentTable(Long rentId) {
+		Connection conn = null;
+		RentTable rent = null;
+		String sql = "select * from renttable r where r.tableid=? ";
+		try {
+			conn = JdbcUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, rentId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				rent = new RentTable();
+				rent.setTableId(rs.getLong("tableId"));
+				rent.setImprest(rs.getDouble("imprest"));
+				rent.setPrice(rs.getDouble("price"));
+				rent.setShouldPayPrice(rs.getDouble("shouldpayprice"));
+				rent.setBeginDate(rs.getDate("begindate"));
+				rent.setReturnDate(rs.getDate("returndate"));
+				rent.setShouldReturnDate(rs.getDate("shouldreturndate"));
+				rent.setRentFlag(rs.getInt("rentflag"));
+				rent.setCustId(rs.getString("custid"));
+				rent.setCarId(rs.getString("carid"));
+				rent.setUserId(rs.getString("userid"));
+			}
+			if (rent != null) {
+				String carId = rent.getCarId();
+				sql = "select * from cars c where c.carnumber=?";
+				PreparedStatement ps2 = conn.prepareStatement(sql);
+				ps2.setString(1, carId);
+				ResultSet rs2 = ps2.executeQuery();
+				while (rs2.next()) {
+					Car car = new Car();
+					car.setCarNumber(rs2.getString("carnumber"));
+					car.setCarType(rs2.getString("cartype"));
+					car.setColor(rs2.getString("color"));
+					car.setDeposit(rs2.getString("deposit"));
+					car.setDescription(rs2.getString("cardesc"));
+					car.setIsRenting(rs2.getString("isrenting"));
+					car.setPrice(rs2.getDouble("price") + "");
+					car.setRentPrice(rs2.getDouble("rentprice") + "");
+					rent.setCar(car);
+				}
+				String custid = rent.getCustId();
+				sql = "select * from customers cust where cust.identity=?";
+				PreparedStatement ps3 = conn.prepareStatement(sql);
+				ps3.setString(1, custid);
+				ResultSet rs3 = ps3.executeQuery();
+				while (rs3.next()) {
+					Customers cust = new Customers();
+					cust.setAddress(rs3.getString("address"));
+					cust.setCareer(rs3.getString("career"));
+					cust.setCustName(rs3.getString("custname"));
+					cust.setCustPwd(rs3.getString("custpwd"));
+					cust.setIdentity(rs3.getString("identity"));
+					cust.setPhone(rs3.getString("phone"));
+					cust.setSex(rs3.getString("sex"));
+					rent.setCustomers(cust);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (e.toString().indexOf("SystemException") != -1) {
+				throw new SystemException(e.getMessage());
+			} else {
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+		return rent;
+	}
+
+	/**
+	 * 创建检查单方法
+	 * 
+	 * @param checkTable
+	 */
+	public void createCheckTable(CheckTable checkTable, User user) {
+		Connection conn = null;
+		String sql = "insert into checktable(checkid,checkdate,field,problem,paying,checkuserid,rentid) values(?,?,?,?,?,?,?)";
+		try {
+			conn = JdbcUtil.getConnection();
+			conn.setAutoCommit(false);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, checkTable.getCheckId());
+			ps.setDate(2,
+					new java.sql.Date(checkTable.getCheckDate().getTime()));
+			ps.setString(3, checkTable.getFiled());
+			ps.setString(4, checkTable.getProblem());
+			if (checkTable.getPaying() != null) {
+				ps.setDouble(5, checkTable.getPaying());
+			} else {
+				ps.setDouble(5, 0);
+			}
+			ps.setString(6, checkTable.getCheckUserId());
+			ps.setLong(7, checkTable.getRentId());
+			ps.executeUpdate();
+			sql = "update renttable r set rentflag=? where r.tableid=? ";
+			PreparedStatement ps2 = conn.prepareStatement(sql);
+			ps2.setInt(1, 1);
+			ps2.setLong(2, checkTable.getRentId());
+			ps2.executeUpdate();
+			sql="update cars c set c.isrenting=? where c.carnumber=?";
+			PreparedStatement ps3=conn.prepareStatement(sql);
+			ps3.setString(1, "0");
+			ps3.setString(2, checkTable.getCarNumber());
+			ps3.executeUpdate();
+			Tools.addLog(user, Constants.LOG_ACTION_CHECKTABLE,
+					Constants.LOG_ACTION_CHECKTABLE_STATE, conn);
+			conn.commit();
+		} catch (SQLException e) {
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			if (e.toString().indexOf("SystemException") != -1) {
+				throw new SystemException(e.getMessage());
+			} else {
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+	}
+
+	public Page findAllCheckTable(CheckTable checkTable, int pageIndex) {
+		Connection conn = null;
+		Page p = new Page();
+		try {
+			conn = JdbcUtil.getConnection();
+			// 公式求起始页和结束页
+			int from = (pageIndex - 1) * Constants.PAGE_NUMBER ;
+			int to = Constants.PAGE_NUMBER;
+			// 获取查询SQL语句
+			String sql = this.genSQL(checkTable, from, to);
+
+			// 获取查询总条数的sql语句
+			String countSql = this.countSQL(checkTable);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				CheckTable c = new CheckTable();
+				c.setCheckId(rs.getLong("checkid"));
+				c.setCheckDate(rs.getDate("checkdate"));
+				c.setCheckUserId(rs.getString("checkuserid"));
+				c.setFiled(rs.getString("field"));
+				c.setProblem(rs.getString("problem"));
+				c.setPaying(rs.getDouble("paying"));
+				c.setRentId(rs.getLong("rentid"));
+
+				// 将查询到的结果集放到page的list属性里
+				p.getResult().add(c);
+			}
+			if (p.getResult().size() > 0) {
+				PreparedStatement ps2 = conn.prepareStatement(countSql);
+				ResultSet rs2 = ps2.executeQuery();
+				int countTemp = -1;
+				while (rs2.next()) {
+					countTemp = rs2.getInt("c");
+				}
+				if (countTemp != -1) {
+					int totalPage = 0;
+					if (countTemp % Constants.PAGE_NUMBER == 0) {
+						totalPage = countTemp / Constants.PAGE_NUMBER;
+					} else {
+						totalPage = countTemp / Constants.PAGE_NUMBER + 1;
+					}
+					p.setCountRow(countTemp);
+					p.setCurrPage(pageIndex);
+					p.setTotalPage(totalPage);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			if (e.toString().indexOf("SystemException") != -1) {
+				throw new SystemException(e.getMessage());
+			} else {
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+
+		return p;
+	}
+
+	// sql语句操作↓↓↓
+	// 拼接查询的sql语句
+	private String genanSQl(CheckTable checkTable) {
+		StringBuffer sb = new StringBuffer(
+				"select checkid,checkdate,field,problem,paying,checkuserid,rentid from  checktable r ");
+
+		if (checkTable.getCheckId() != null) {
+			sb.append(" and r.checkid =").append(checkTable.getCheckId());
+		}
+		if (checkTable.getCheckDate() != null) {
+			sb.append(" and r.checkdate like  '%")
+					.append(
+							Tools.dateToString(checkTable.getCheckDate(),
+									"yyyy-MM-dd")).append("%'");
+		}
+		if (checkTable.getCheckUserId() != null
+				&& checkTable.getCheckUserId().length() > 0) {
+			sb.append(" and r.checkuserid ='").append(
+					checkTable.getCheckUserId()).append("'");
+		}
+		if (checkTable.getRentId() != 0) {
+			sb.append(" and r.rentid =").append(checkTable.getRentId());
+		}
+
+		return sb.toString();
+	}
+
+	// 拼接查询码内建视图的sql语句
+	private String genSQL(CheckTable table, int from, int to) {
+		StringBuffer sb = new StringBuffer("");
+		sb.append(this.genanSQl(table)).append(" limit ")
+				.append(from).append(" , ").append(to);
+		return sb.toString().replaceFirst("and", "where");
+	}
+
+	// 拼接查询总条数的sql语句
+	private String countSQL(CheckTable checkTable) {
+		StringBuffer sb = new StringBuffer(
+				"select count(*) c from  checktable r where 1=1 ");
+
+		if (checkTable.getCheckId() != null) {
+			sb.append(" and r.checkid =").append(checkTable.getCheckId());
+		}
+		if (checkTable.getCheckDate() != null) {
+			sb.append(" and r.checkdate like  '%")
+					.append(
+							Tools.dateToString(checkTable.getCheckDate(),
+									"yyyy-MM-dd")).append("%'");
+		}
+		if (checkTable.getCheckUserId() != null
+				&& checkTable.getCheckUserId().length() > 0) {
+			sb.append(" and r.checkuserid ='").append(
+					checkTable.getCheckUserId()).append("'");
+		}
+		if (checkTable.getRentId() != 0) {
+			sb.append(" and r.rentid =").append(checkTable.getRentId());
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * 删除检查单
+	 * 
+	 * @param checkId
+	 */
+	public void deleteCheckTable(Long checkId) {
+		Connection conn = null;
+		String sql = "delete from  checktable where checkid = ?";
+		try {
+			conn = JdbcUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, checkId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			if (e.toString().indexOf("SystemException") != -1) {
+
+				throw new SystemException(e.getMessage());
+			} else {
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+	}
+	/**
+	 * 查找单个检查单
+	 * @param checkId
+	 * @return
+	 */
+	public CheckTable findCheckTable(Long checkId) {
+		Connection conn = null;
+		CheckTable c = null;
+		String sql="select * from checktable where checkid = ?";
+		try {
+			conn = JdbcUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, checkId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				c = new CheckTable();
+				c.setCheckId(rs.getLong("checkid"));
+				c.setCheckDate(rs.getDate("checkdate"));
+				c.setCheckUserId(rs.getString("checkuserid"));
+				c.setFiled(rs.getString("field"));
+				c.setProblem(rs.getString("problem"));
+				c.setPaying(rs.getDouble("paying"));
+				c.setRentId(rs.getLong("rentid"));
+			}
+		}  catch (SQLException e) {
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			if (e.toString().indexOf("SystemException") != -1) {
+				throw new SystemException(e.getMessage());
+			} else {
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+		return c;
+	}
+
+	public CheckTable updateCheckTable(CheckTable checkTable) {
+		Connection conn = null;
+		String sql = "update checktable set field=?,problem=?,paying=? where checkid = ?";
+		try {
+			conn = JdbcUtil.getConnection();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, checkTable.getFiled());
+			ps.setString(2, checkTable.getProblem());
+			ps.setDouble(3, checkTable.getPaying());
+			ps.setLong(4, checkTable.getCheckId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JdbcUtil.rollbackConnection(conn);
+			throw new SystemException("sql语句出错");
+		} catch (Exception e) {
+			if (e.toString().indexOf("SystemException") != -1) {
+				throw new SystemException(e.getMessage());
+			} else {
+				e.printStackTrace();
+				JdbcUtil.rollbackConnection(conn);
+				throw new SystemError("数据库访问失败");
+			}
+		} finally {
+			JdbcUtil.closeConnection(conn);
+		}
+		return null;
+	}
+	
+
+}

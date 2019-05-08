@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/rep1/!svn/ver/254/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet
+END
+AddCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/rep1/!svn/ver/254/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/AddCustomersServlet.java
+END
+FindAllCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/rep1/!svn/ver/208/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/FindAllCustomersServlet.java
+END
+DeleteAllCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/rep1/!svn/ver/254/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/DeleteAllCustomersServlet.java
+END
+FindCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/rep1/!svn/ver/208/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/FindCustomersServlet.java
+END
+DeleteCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/rep1/!svn/ver/254/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/DeleteCustomersServlet.java
+END
+UpdateCustomersServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/rep1/!svn/ver/253/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/UpdateCustomersServlet.java
+END
+ChengeCustomersPwdServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/rep1/!svn/ver/254/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/ChengeCustomersPwdServlet.java
+END
+PreChangeCustomerPwdServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/rep1/!svn/ver/208/rentCarSystem/src/com/rentCarSystem/web/servlet/customersServlet/PreChangeCustomerPwdServlet.java
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/rep1/!svn/ver/309/rentCarSystem/WebRoot/custManager
+END
+findCustomers.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/rep1/!svn/ver/291/rentCarSystem/WebRoot/custManager/findCustomers.jsp
+END
+viewAllCustomers.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/rep1/!svn/ver/309/rentCarSystem/WebRoot/custManager/viewAllCustomers.jsp
+END
+chengeCustomersPwd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rep1/!svn/ver/244/rentCarSystem/WebRoot/custManager/chengeCustomersPwd.jsp
+END
+addCustomers.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/rep1/!svn/ver/290/rentCarSystem/WebRoot/custManager/addCustomers.jsp
+END
+viewCustomers.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/rep1/!svn/ver/244/rentCarSystem/WebRoot/custManager/viewCustomers.jsp
+END

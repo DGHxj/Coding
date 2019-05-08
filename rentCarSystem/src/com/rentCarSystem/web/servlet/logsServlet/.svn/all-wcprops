@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rep1/!svn/ver/338/rentCarSystem/src/com/rentCarSystem/web/servlet/logsServlet
+END
+DeleteAllLogs.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/rep1/!svn/ver/338/rentCarSystem/src/com/rentCarSystem/web/servlet/logsServlet/DeleteAllLogs.java
+END
+FindLogsServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/rep1/!svn/ver/222/rentCarSystem/src/com/rentCarSystem/web/servlet/logsServlet/FindLogsServlet.java
+END
+DeleteLogsServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/rep1/!svn/ver/337/rentCarSystem/src/com/rentCarSystem/web/servlet/logsServlet/DeleteLogsServlet.java
+END

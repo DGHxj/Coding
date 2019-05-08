@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/rep1/!svn/ver/383/rentCarSystem/src/com/rentCarSystem/persist
+END
+UserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/rep1/!svn/ver/43/rentCarSystem/src/com/rentCarSystem/persist/UserDao.java
+END
+RentTableDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/rep1/!svn/ver/246/rentCarSystem/src/com/rentCarSystem/persist/RentTableDao.java
+END
+UserDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/215/rentCarSystem/src/com/rentCarSystem/persist/UserDaoImpl.java
+END
+RoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rep1/!svn/ver/303/rentCarSystem/src/com/rentCarSystem/persist/RoleDao.java
+END
+RentTableDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/rep1/!svn/ver/383/rentCarSystem/src/com/rentCarSystem/persist/RentTableDaoImpl.java
+END
+RoleDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/342/rentCarSystem/src/com/rentCarSystem/persist/RoleDaoImpl.java
+END
+CustomersDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/57/rentCarSystem/src/com/rentCarSystem/persist/CustomersDao.java
+END
+LogsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/rep1/!svn/ver/220/rentCarSystem/src/com/rentCarSystem/persist/LogsDao.java
+END
+CarDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/rep1/!svn/ver/171/rentCarSystem/src/com/rentCarSystem/persist/CarDao.java
+END
+CheckTableDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/rep1/!svn/ver/310/rentCarSystem/src/com/rentCarSystem/persist/CheckTableDao.java
+END
+CustomersDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/rep1/!svn/ver/228/rentCarSystem/src/com/rentCarSystem/persist/CustomersDaoImpl.java
+END
+LogsDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/rep1/!svn/ver/275/rentCarSystem/src/com/rentCarSystem/persist/LogsDaoImpl.java
+END
+CarDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/rep1/!svn/ver/171/rentCarSystem/src/com/rentCarSystem/persist/CarDaoImpl.java
+END
+CheckTableDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/rep1/!svn/ver/361/rentCarSystem/src/com/rentCarSystem/persist/CheckTableDaoImpl.java
+END

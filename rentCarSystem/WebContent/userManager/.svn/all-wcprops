@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/rep1/!svn/ver/384/rentCarSystem/WebRoot/userManager
+END
+addUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/rep1/!svn/ver/288/rentCarSystem/WebRoot/userManager/addUser.jsp
+END
+viewUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/rep1/!svn/ver/384/rentCarSystem/WebRoot/userManager/viewUser.jsp
+END
+changeUserPwd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/rep1/!svn/ver/296/rentCarSystem/WebRoot/userManager/changeUserPwd.jsp
+END
+findUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/rep1/!svn/ver/289/rentCarSystem/WebRoot/userManager/findUser.jsp
+END
+updateUser.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/rep1/!svn/ver/242/rentCarSystem/WebRoot/userManager/updateUser.jsp
+END
