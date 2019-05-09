@@ -11,11 +11,15 @@ import com.nkl.common.util.StringUtil;
 public class CarDao {
 
 	public int addCar(Car car, Connection conn){
-		String sql = "INSERT INTO car(car_name,car_model,car_desc) values(?,?,?)";
+		String sql = "INSERT INTO car(car_name,car_model,car_desc,car_color,car_oil,car_dis,car_imgFileName) values(?,?,?,?,?,?,?)";
 		Object[] params = new Object[] {
 			car.getCar_name(),
 			car.getCar_model(),
-			car.getCar_desc()
+			car.getCar_desc(),
+			car.getCar_color(),
+			car.getCar_oil(),
+			car.getCar_dis(),
+			car.getCar_imgFileName()
 		};
 		return BaseDao.executeUpdate(sql, params, conn );
 	}
@@ -49,6 +53,15 @@ public class CarDao {
 		}
 		if (!StringUtil.isEmptyString(car.getCar_desc())) {
 			sBuilder.append(" ,car_desc ='" + car.getCar_desc() +"' ");
+		}
+		if (!StringUtil.isEmptyString(car.getCar_color())) {
+			sBuilder.append(" ,car_color ='" + car.getCar_color() +"' ");
+		}
+		if (!StringUtil.isEmptyString(car.getCar_oil())) {
+			sBuilder.append(" ,car_oil ='" + car.getCar_oil() +"' ");
+		}
+		if (!StringUtil.isEmptyString(car.getCar_dis())) {
+			sBuilder.append(" ,car_dis ='" + car.getCar_dis() +"' ");
 		}
 
 		sBuilder.append(" where car_id = " + car.getCar_id());

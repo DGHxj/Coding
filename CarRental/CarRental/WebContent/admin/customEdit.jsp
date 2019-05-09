@@ -57,7 +57,7 @@ $(document).ready(function(){
 </div>
 <form id="info" name="info" action="Admin_addCustom.action" method="post">   
 <s:hidden id="paramsCustom.custom_id" name="paramsCustom.custom_id" value="%{#attr.custom.custom_id}" /> 
-<table width="800" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:10px;">
+<table width="100%" align="center" cellpadding="0" cellspacing="0" style="margin-top:0px;margin-bottom:0px;">
   <tr> 
      <td height="24">
        <Table border="0" cellspacing="0" cellpadding="0" align="center" width="100%"> 
@@ -76,23 +76,35 @@ $(document).ready(function(){
      <td >
      <table width="100%" align="center" cellpadding="1" cellspacing="1" class="editbody">
        <tr>
-          <td width="20%" align="right" style="padding-right:5px"><font color="red">*</font> 名称：</td>
-          <td width="80%" >
-          	<s:textfield cssStyle="width:350px" name="paramsCustom.custom_name" id="paramsCustom.custom_name" value="%{#attr.custom.custom_name}"/> 
+          <td width="50%" align="right" style="padding-right:5px;font-size: 18px; font-family: YouYuan"><font color="red">*</font> 姓 名：</td>
+          <td width="50%" >
+          	<s:textfield cssStyle="width:250px" name="paramsCustom.custom_name" id="paramsCustom.custom_name" value="%{#attr.custom.custom_name}"/> 
           </td>
         </tr> 
         <tr>
-          <td align="right" style="padding-right:5px">电话：</td>
-          <td>
-            <s:textfield name="paramsCustom.custom_phone" id="paramsCustom.custom_phone" value="%{#attr.custom.custom_phone}"/>
+          <td align="right" style="padding-right:5px;font-size: 18px; font-family: YouYuan"><font color="red">*</font>电 话：</td>
+          <td style="font-size:18px;font-family: YouYuan">
+            <s:textfield cssStyle="width:250px" name="paramsCustom.custom_phone" id="paramsCustom.custom_phone" value="%{#attr.custom.custom_phone}"/>
           </td> 
         </tr>
         <tr>
-          <td align="right" style="padding-right:5px"><font color="red">*</font> 住址：</td>
+          <td align="right" style="padding-right:5px;font-size: 18px; font-family: YouYuan"><font color="red">*</font> 身份证号码：</td>
           <td>
-            <s:textfield cssStyle="width:350px" name="paramsCustom.custom_address" id="paramsCustom.custom_address" value="%{#attr.custom.custom_address}" style="width:300px"/>
+            <s:textfield cssStyle="width:250px" name="paramsCustom.custom_cardid" id="paramsCustom.custom_cardid" value="%{#attr.custom.custom_cardid}" style="width:300px"/>
           </td>
-        </tr>   
+        </tr> 
+        <tr>
+          <td align="right" style="padding-right:5px;font-size: 18px; font-family: YouYuan"><font color="red">*</font> 性 别：</td>
+          <td>
+            <s:textfield cssStyle="width:250px" name="paramsCustom.custom_sex" id="paramsCustom.custom_sex" value="%{#attr.custom.custom_sex}" style="width:300px"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" style="padding-right:5px;font-size: 18px; font-family: YouYuan"><font color="red">*</font> 住 址：</td>
+          <td>
+            <s:textfield cssStyle="width:250px" name="paramsCustom.custom_address" id="paramsCustom.custom_address" value="%{#attr.custom.custom_address}" style="width:300px"/>
+          </td>
+        </tr>  
      </table>
      </td>
    </tr>  

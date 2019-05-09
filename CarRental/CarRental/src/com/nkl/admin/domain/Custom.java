@@ -11,7 +11,25 @@ public class Custom extends BaseDomain {
 	private String custom_name; // 
 	private String custom_phone; // 
 	private String custom_address; // 
-	private String custom_date; // 
+	private String custom_cardid; // 
+	private String custom_sex; // 
+	public String getCustom_cardid() {
+		return custom_cardid;
+	}
+
+	public void setCustom_cardid(String custom_cardid) {
+		this.custom_cardid = custom_cardid;
+	}
+
+	public String getCustom_sex() {
+		return custom_sex;
+	}
+
+	public void setCustom_sex(String custom_sex) {
+		this.custom_sex = custom_sex;
+	}
+
+	private String custom_date; //
 
 	private String ids;
 	private String random;

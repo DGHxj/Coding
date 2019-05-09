@@ -36,7 +36,7 @@ $(document).ready(function(){
 </div>
 <form id="info" name="info" action="Admin_saveAdminPass.action" method="post">    
 <input type="hidden" name="paramsUser.user_id" value="${admin.user_id}"/>
-<table width="800" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:10px;">
+<table width="100%" align="center" cellpadding="0" cellspacing="0" style="margin-top:0px;margin-bottom:0px;">
   <tr> 
      <td height="24">
        <Table border="0" cellspacing="0" cellpadding="0" align="center" width="100%"> 
@@ -55,24 +55,16 @@ $(document).ready(function(){
      <td >
      <table width="100%" align="center" cellpadding="1" cellspacing="1" class="editbody">
         <tr>
-          <td align="right" style="padding-right:5px"><font color="red">*</font> 输入新密码：</td>
-          <td>
-            <input type="password" id="paramsUser.user_pass" name="paramsUser.user_pass"  />
-          </td>
-          <td align="right" style="padding-right:5px"></td>
-          <td>
-             
-          </td> 
+          <td width="50%" align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan"><font color="red">*</font> 输入新密码：</td>
+          <td width="50%">
+            <input style="font-size:18px;font-family: YouYuan" type="password" id="paramsUser.user_pass" name="paramsUser.user_pass"  />
+          </td>           
         </tr>
         <tr>
-          <td align="right" style="padding-right:5px"><font color="red">*</font> 确认新密码：</td>
+          <td align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan"><font color="red">*</font> 确认新密码：</td>
           <td>
-            <input type="password" id="user_rpass" name="user_rpass"  />
-          </td>
-          <td align="right" style="padding-right:5px"></td>
-          <td>
-             
-          </td> 
+            <input style="font-size:18px;font-family: YouYuan" type="password" id="user_rpass" name="user_rpass"  />
+          </td>         
         </tr>
          
      </table>

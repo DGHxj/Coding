@@ -18,9 +18,12 @@
 	
 </script>
 <style type="text/css">
- body,td,div
+ body
  {
-   font-size:12px;
+   font-size:16px;
+   font-weight:bold;
+   font-family: YouYuan;
+   
  }
 </style>
 </head>
@@ -45,7 +48,7 @@
 					<TABLE cellSpacing=0 cellPadding=2 border=0>
 					<TBODY>
 						<TR>
-							<TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
+							<TD style="HEIGHT: 28px" width=100>登 录 名：</TD>
 							<TD style="HEIGHT: 28px" width=150><INPUT id="params.user_name" name="params.user_name" value="${params.user_name}" style="WIDTH: 130px" name=txtName></TD>
 							<TD style="HEIGHT: 28px" width=370>
 								<SPAN  id="RequiredFieldValidator1" style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN>

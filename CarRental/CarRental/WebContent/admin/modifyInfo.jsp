@@ -25,6 +25,10 @@ $(document).ready(function(){
 	
 </script>
 <style type="text/css">
+table tr td{ 
+	font-size:24px; 
+	font-family:Arial, Helvetica, sans-serif;
+}
 </style>
 </head>
 <body>
@@ -33,7 +37,7 @@ $(document).ready(function(){
 </div>
 <form id="info" name="info" action="Admin_saveAdmin.action" method="post">    
 <input type="hidden" name="paramsUser.user_id" value="${admin.user_id}"/>
-<table width="800" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:10px;">
+<table width="100%" align="center" cellpadding="0" cellspacing="0" style="margin-top:0px;margin-bottom:0px;">
   <tr> 
      <td height="24">
        <Table border="0" cellspacing="0" cellpadding="0" align="center" width="100%"> 
@@ -52,30 +56,32 @@ $(document).ready(function(){
      <td >
      <table width="100%" align="center" cellpadding="1" cellspacing="1" class="editbody">
         <tr>
-          <td width="15%" align="right" style="padding-right:5px">用户名：</td>
-          <td width="35%">${admin.user_name}</td>
-          <td width="15%" align="right" style="padding-right:5px"></td>
-          <td width="35%"></td>
+          <td width="50%" align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan">用户名：</td>
+          <td width="50%" style="font-size:18px;font-family: YouYuan">${admin.user_name}</td>
         </tr> 
         <tr>
-          <td align="right" style="padding-right:5px"><font color="red">*</font> 姓名：</td>
+          <td align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan"><font color="red">*</font> 姓名：</td>
           <td>
-             <input type="text" id="paramsUser.real_name" name="paramsUser.real_name" value="${admin.real_name}"/>
+             <input style="font-size:18px;font-family: YouYuan" type="text" id="paramsUser.real_name" name="paramsUser.real_name" value="${admin.real_name}"/>
           </td>
-          <td align="right" style="padding-right:5px"><font color="red">*</font> 性别：</td>
+        </tr> 
+        <tr>
+          <td align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan"><font color="red">*</font> 性别：</td>
           <td>
-             <input type="radio" name="paramsUser.user_sex" id="sex1" value="1"/>男&nbsp;&nbsp;
-             <input type="radio" name="paramsUser.user_sex" id="sex2" value="2"/>女
+             <input style="font-size:18px;font-family: YouYuan" type="radio" name="paramsUser.user_sex" id="sex1" value="1"/>男&nbsp;&nbsp;
+             <input style="font-size:18px;font-family: YouYuan" type="radio" name="paramsUser.user_sex" id="sex2" value="2"/>女
           </td>
         </tr>     
-         <tr>
-          <td align="right" style="padding-right:5px">电话：</td>
+        <tr>
+          <td align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan">电话：</td>
           <td>
-            <input type="text" id="paramsUser.user_phone" name="paramsUser.user_phone" value="${admin.user_phone}"/>
+            <input style="font-size:18px;font-family: YouYuan" type="text" id="paramsUser.user_phone" name="paramsUser.user_phone" value="${admin.user_phone}"/>
           </td>
-          <td align="right" style="padding-right:5px">邮箱：</td>
+        </tr> 
+        <tr>
+          <td align="right" style="padding-right:5px;font-size:18px;font-family: YouYuan">邮箱：</td>
           <td>
-            <input type="text" id="paramsUser.user_mail" name="paramsUser.user_mail" value="${admin.user_mail}"/>
+            <input style="font-size:18px;font-family: YouYuan" type="text" id="paramsUser.user_mail" name="paramsUser.user_mail" value="${admin.user_mail}"/>
           </td>  
         </tr>     
          

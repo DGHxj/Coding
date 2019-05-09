@@ -1,6 +1,10 @@
 package com.nkl.admin.action;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.nkl.admin.domain.Car;
 import com.nkl.admin.domain.Custom;
@@ -233,12 +237,25 @@ public class AdminAction  extends BaseAction {
 		return "carEdit";
 	}
 	
+
 	/**
 	 * @Title: addCar
 	 * @Description: 添加汽车
 	 * @return String
 	 */
 	public String addCar(){
+		String realpath = ServletActionContext.getServletContext().getRealPath("/images");
+		if (paramsCar.getCar_img() != null) {
+			File target = new File(realpath, paramsCar.getCar_imgFileName());
+			//如果文件不存在，就创建
+			if (!target.getParentFile().exists())
+				target.getParentFile().mkdirs();
+			try {
+				FileUtils.copyFile(paramsCar.getCar_img(), target);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		try {
 			 //添加汽车
 			adminManager.addCar(paramsCar);

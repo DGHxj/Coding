@@ -47,9 +47,9 @@ $(document).ready(function(){
 <div class="pageTitle">
 	&nbsp;&nbsp;<img src="images/right1.gif" align="middle" /> &nbsp;<span id="MainTitle" style="color:white">汽车管理&gt;&gt;<s:if test="#attr.car!=null && #attr.car.car_id!=0">编辑</s:if><s:else>添加</s:else>汽车</span>
 </div>
-<form id="info" name="info" action="Admin_addCar.action" method="post">   
+<form id="info" name="info" action="Admin_addCar.action" enctype="multipart/form-data" method="post">   
 <s:hidden id="paramsCar.car_id" name="paramsCar.car_id" value="%{#attr.car.car_id}" /> 
-<table width="800" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;margin-bottom:10px;">
+<table width="100%" align="center" cellpadding="0" cellspacing="0" style="margin-top:0px;margin-bottom:0px;">
   <tr> 
      <td height="24">
        <Table border="0" cellspacing="0" cellpadding="0" align="center" width="100%"> 
@@ -68,8 +68,8 @@ $(document).ready(function(){
      <td >
      <table width="100%" align="center" cellpadding="1" cellspacing="1" class="editbody">
        <tr>
-          <td width="35%" align="right" style="padding-right:5px"><font color="red">*</font> 汽车品牌：</td>
-          <td width="65%" >
+          <td width="50%" align="right" style="padding-right:5px"><font color="red">*</font> 汽车品牌：</td>
+          <td width="50%" >
           	<s:textfield name="paramsCar.car_name" id="paramsCar.car_name" value="%{#attr.car.car_name}" style="width:300px"/>
           </td>
         </tr> 
@@ -78,12 +78,37 @@ $(document).ready(function(){
           <td colspan="3">
             <s:textfield name="paramsCar.car_model" id="paramsCar.car_model" value="%{#attr.car.car_model}" style="width:300px"/>
           </td>
+        </tr>
+        <tr>
+          <td align="right" style="padding-right:5px"><font color="red">*</font> 汽车颜色：</td>
+          <td colspan="3">
+            <s:textfield name="paramsCar.car_color" id="paramsCar.car_color" value="%{#attr.car.car_color}" style="width:300px"/>
+          </td>
+        </tr>  
+        <tr>
+          <td align="right" style="padding-right:5px"><font color="red">*</font> 汽车油耗：</td>
+          <td colspan="3">
+            <s:textfield name="paramsCar.car_oil" id="paramsCar.car_oil" value="%{#attr.car.car_oil}" style="width:300px"/>
+          </td>
         </tr>   
+        <tr>
+          <td align="right" style="padding-right:5px"><font color="red">*</font> 汽车排量：</td>
+          <td colspan="3">
+            <s:textfield name="paramsCar.car_dis" id="paramsCar.car_dis" value="%{#attr.car.car_dis}" style="width:300px"/>
+          </td>
+        </tr>    
          <tr>
           <td align="right" style="padding-right:5px">汽车描述：</td>
           <td>
           	<s:textarea cssStyle="width:305px;height:80px" name="paramsCar.car_desc" id="paramsCar.car_desc" value="%{#attr.car.car_desc}"/>
           </td>
+        </tr>
+        <tr>
+            <td class="tdBg" width="200px" align="right">汽车图片：</td>
+            <td>
+                <s:file name="paramsCar.car_img" class="form-control" label="上传图片"/>
+            </td>
+            
         </tr>
      </table>
      </td>

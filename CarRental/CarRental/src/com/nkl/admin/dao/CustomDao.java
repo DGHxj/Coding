@@ -11,10 +11,12 @@ import com.nkl.common.util.StringUtil;
 public class CustomDao {
 
 	public int addCustom(Custom custom, Connection conn){
-		String sql = "INSERT INTO custom(custom_id,custom_name,custom_phone,custom_address,custom_date) values(null,?,?,?,?)";
+		String sql = "INSERT INTO custom(custom_id,custom_name,custom_phone,custom_cardid,custom_sex,custom_address,custom_date) values(null,?,?,?,?,?,?)";
 		Object[] params = new Object[] {
 			custom.getCustom_name(),
 			custom.getCustom_phone(),
+			custom.getCustom_cardid(),
+			custom.getCustom_sex(),
 			custom.getCustom_address(),
 			custom.getCustom_date()
 

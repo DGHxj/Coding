@@ -113,6 +113,8 @@ function ChangePage(pagenum)
      <td width="" align="center">名称</td>
      <td width="" align="center">住址</td>
      <td width="" align="center">电话</td>
+     <td width="" align="center">身份证号</td>
+     <td width="" align="center">性别</td>
      <td width="" align="center">添加时间</td>
      <td width="" align="center">操作</td>
    </tr>
@@ -124,6 +126,8 @@ function ChangePage(pagenum)
      <td width="" align="center"><s:property value="#custom.custom_name"/></td>
      <td width="" align="center"><s:property value="#custom.custom_address"/></td>
      <td width="" align="center"><s:property value="#custom.custom_phone"/>&nbsp;</td>
+     <td width="" align="center"><s:property value="#custom.custom_cardid"/>&nbsp;</td>
+     <td width="" align="center"><s:property value="#custom.custom_sex"/>&nbsp;</td>
      <td width="" align="center"><s:property value="#custom.custom_date.substring(0,19)"/></td>  
      <td width="" align="center">
        <img src="images/edit.png"/>&nbsp;<s:a href="Admin_editCustom.action?paramsCustom.custom_id=%{#custom.custom_id}">编辑</s:a>

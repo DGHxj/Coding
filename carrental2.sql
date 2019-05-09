@@ -14,6 +14,7 @@ Date: 2019-05-08 21:43:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+/*!40101 SET NAMES utf8 */;
 
 -- ----------------------------
 -- Table structure for `car`

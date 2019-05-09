@@ -14,7 +14,9 @@ body{
 	margin:0px; 
 	padding:0px; 
 	font-size:12px; 
-	background:url(images/main_bg.jpg) no-repeat right bottom #fff
+	background:url(images/ym.jpg);
+	background-repeat: no-repeat;
+	background-size:100%; 
 }
 table tr td{ 
 	font-size:12px; 
@@ -29,10 +31,10 @@ table tr td{
     <td height="23">&nbsp;</td>
   </tr>
   <tr>
-    <td height="35" valign="bottom" style=""><p style="font-size:16px; font-weight:bold; text-align:left; padding-left:60px; font-family:Arial, Helvetica, sans-serif; color:#016597;">※ 汽车租赁管理系统</p></td>
+    <td height="50" valign="bottom" ><p style="font-size:50px; font-weight:bold; text-align:center; padding-left:60px; font-family:YouYuan; color:#222222;"> 汽车租赁管理系统</p></td>
   </tr>
   <tr>
-    <td align="left" valign="top"><p style="padding-left:60px; padding-top:5px; text-indent:2em; line-height:24px; padding-right:30px; color:#016597;">&gt;&gt;欢迎您登录使用汽车租赁管理系统。</p></td>
+    <td align="center" valign="top"><p style="padding-left:60px;font-size:30px; padding-top:5px; text-indent:2em;font-family:YouYuan; line-height:24px; padding-right:30px; color:#555555;">欢迎您登录使用汽车租赁管理系统。</p></td>
   </tr>
 </table>
 </body>

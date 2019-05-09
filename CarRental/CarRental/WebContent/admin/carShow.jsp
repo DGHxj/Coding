@@ -115,6 +115,10 @@ function ChangePage(pagenum)
      <td width="150" align="center">汽车品牌</td>
      <td width="150" align="center">汽车型号</td>
      <td width="" align="center">汽车描述</td>
+     <td width="" align="center">汽车颜色</td>
+     <td width="" align="center">汽车油耗(L/百公里)</td>
+     <td width="" align="center">汽车排量(T)</td>
+     <td width="" align="center">汽车图片</td>
      <td width="" align="center">操作</td>
    </tr>
    <s:if test="#attr.cars!=null && #attr.cars.size()>0">
@@ -125,6 +129,10 @@ function ChangePage(pagenum)
      <td width="" align="center"><s:property value="#car.car_name"/></td>
      <td width="" align="center"><s:property value="#car.car_model"/></td>
      <td width="" align="center"><s:property value="#car.car_desc"/>&nbsp;</td>
+     <td width="" align="center"><s:property value="#car.car_color"/>&nbsp;</td>
+     <td width="" align="center"><s:property value="#car.car_oil"/>&nbsp;</td>
+     <td width="" align="center"><s:property value="#car.car_dis"/>&nbsp;</td>
+     <td width="" align="center"><img height="100px" width="100px" src='<s:url value="/images/%{#car.car_imgFileName}"/>' alt="汽车图片"/></td>
      <td width="" align="center">
        <img src="images/edit.png"/>&nbsp;<s:a href="Admin_editCar.action?paramsCar.car_id=%{#car.car_id}">编辑</s:a>
      </td>
